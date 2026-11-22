@@ -1,0 +1,9 @@
+{
+  "collection": "filings_structure_7b8e33672c31a930",
+  "strategy": "structure",
+  "source_hash": "239039d37427ac9a606b604caca33909f60b91592bb67d7dc5b51e6278817a38",
+  "model": "nomic-ai/nomic-embed-text-v1.5",
+  "format": "document-v1",
+  "dimension": 768,
+  "count": 2042
+}
