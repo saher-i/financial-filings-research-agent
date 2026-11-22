@@ -123,7 +123,7 @@ def run_development(answerer: Callable[[str], dict], *, root: Path = ROOT,
     if ids is None and output_dir is None:
         _archive_legacy_run(root)
         if preserve_previous and (root / "dev_answers.json").is_file():
-            shutil.copy2(root / "dev_answers.json", root / "previous_dev_answers.json")
+            shutil.copy2(root / "dev_answers.json", root / "previous_answers.json")
     run_id = "run-" + datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S") + "-" + uuid4().hex[:6]
     run_folder = root / "evaluation/runs" / run_id if output_dir is None else destination / "runs" / run_id
     started_at = datetime.now(timezone.utc).isoformat(timespec="seconds")

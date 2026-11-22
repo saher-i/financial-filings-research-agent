@@ -96,7 +96,7 @@ class DevelopmentEvaluationTests(unittest.TestCase):
             (root / "dev_answers.json").write_text('{"q_1":"Previous answer"}')
             run_development(lambda _: {"answer": "New answer", "sources": []},
                             root=root, preserve_previous=True)
-            self.assertEqual(json.loads((root / "previous_dev_answers.json").read_text()),
+            self.assertEqual(json.loads((root / "previous_answers.json").read_text()),
                              {"q_1": "Previous answer"})
             self.assertEqual(json.loads((root / "dev_answers.json").read_text()),
                              {"q_1": "New answer"})

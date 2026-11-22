@@ -3,7 +3,7 @@
 Run after stopping the local server:
     .venv/bin/python -m scripts.run_verified_benchmark
 
-The prior answer file is saved as previous_dev_answers.json.
+The prior answer file is saved as previous_answers.json.
 """
 
 from __future__ import annotations
@@ -42,7 +42,7 @@ def main() -> None:
         }
     print(json.dumps({"previous_benchmark": previous_counts,
                       "verified_benchmark": result["counts"], "reviews": reviews}, indent=2))
-    print("Saved new answers to dev_answers.json; prior answers are in previous_dev_answers.json")
+    print("Saved new answers to dev_answers.json; prior answers are in previous_answers.json")
 
 
 if __name__ == "__main__":
