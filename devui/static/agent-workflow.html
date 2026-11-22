@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Workflow · Developer</title>
+  <link rel="stylesheet" href="/dev/chunks.css">
+  <link rel="stylesheet" href="/dev/dev-theme.css">
+  <link rel="stylesheet" href="/dev/agent-workflow.css">
+  <script src="/dev/agent-workflow.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail" aria-label="Developer workspace">
+      <div class="rail-brand"><span class="brand-mark">◈</span><span>AGENT<br><small>DEVELOPER WORKSPACE</small></span></div>
+      <div class="rail-divider"></div>
+      <p class="rail-label">DEVELOPER WORKSPACE</p>
+      <a class="rail-link" href="/ingestion-pipeline"><span>01</span> Ingestion Workspace</a>
+      <a class="rail-link" href="/retrieval-evaluation"><span>02</span> Retrieval Evaluation</a>
+      <a class="rail-link" href="/generation-evaluation"><span>03</span> Generation Evaluation</a>
+      <a class="rail-link" href="/benchmark-evaluation"><span>04</span> Benchmark Evaluation</a>
+      <a class="rail-link current" href="/agent-workflow" aria-current="page"><span>05</span> Agent Workflow</a>
+      <a class="rail-chat-link" href="/">← Main chat</a>
+      <div class="rail-bottom"><span class="private-dot"></span> LOCAL · DEVELOPER ONLY</div>
+    </aside>
+    <main class="main">
+      <header class="masthead"><span class="eyebrow">TRACE / DEVELOPER</span><span class="masthead-right">ACTUAL CHAT RUNS</span></header>
+      <section class="workflow-intro">
+        <p class="kicker">LOCAL OBSERVABILITY</p>
+        <h1>Agent <em>Workflow.</em></h1>
+        <p>Ask a question in <a href="/">10K research agent chat</a>, then inspect the tools the agent actually chose. This page records completed chat runs locally. It shows actions and evidence, not the model’s private reasoning.</p>
+      </section>
+      <section class="workflow-layout" aria-label="Agent runs">
+        <div class="workflow-list-panel">
+          <div class="workflow-panel-head"><h2>Recent queries</h2><button type="button" id="refresh">Refresh</button></div>
+          <div id="runs" class="workflow-runs"><p class="workflow-muted">Loading saved runs…</p></div>
+        </div>
+        <div id="detail" class="workflow-detail"><p class="workflow-muted">Choose a query to inspect its workflow.</p></div>
+      </section>
+      <p class="workflow-footnote">Saved only on this computer in <code>logs/agent_runs.jsonl</code>. The log excludes API keys and model prompts.</p>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmark Evaluation · Developer</title>
+  <link rel="stylesheet" href="/dev/chunks.css"><link rel="stylesheet" href="/dev/retrieval-evaluation.css">
+  <link rel="stylesheet" href="/dev/dev-theme.css"><script src="/dev/eval-progress.js" defer></script><script src="/dev/model-picker.js" defer></script><script src="/dev/benchmark-evaluation.js" defer></script>
+</head>
+<body><div class="app-shell">
+  <aside class="rail" aria-label="Developer workspace">
+    <div class="rail-brand"><span class="brand-mark">◈</span><span>AGENT<br><small>DEVELOPER WORKSPACE</small></span></div>
+    <div class="rail-divider"></div><p class="rail-label">DEVELOPER WORKSPACE</p>
+    <a class="rail-link" href="/ingestion-pipeline"><span>01</span> Ingestion Workspace</a>
+    <a class="rail-link" href="/retrieval-evaluation"><span>02</span> Retrieval Evaluation</a>
+    <a class="rail-link" href="/generation-evaluation"><span>03</span> Generation Evaluation</a>
+    <a class="rail-link current" href="/benchmark-evaluation" aria-current="page"><span>04</span> Benchmark Evaluation</a>
+    <a class="rail-link" href="/agent-workflow"><span>05</span> Agent Workflow</a>
+    <a class="rail-chat-link" href="/">← Main chat</a>
+      <div class="rail-bottom"><span class="private-dot"></span> LOCAL · DEVELOPER ONLY</div>
+  </aside>
+  <main class="main">
+    <header class="masthead"><span class="eyebrow">BENCHMARK / DEVELOPER</span><span class="masthead-right">SUPPLIED QUESTION GRADING METHODS</span></header>
+    <section class="intro"><div><p class="kicker">EVIDENCE SYSTEMS / BENCHMARK</p><h1>Benchmark <em>Evaluation.</em></h1>
+      <p class="intro-copy">Generate all ten development answers, then grade them using each question’s declared method: fuzzy numeric, exact entity, or LLM judge.</p></div></section>
+    <section class="section"><div class="section-heading"><div><span class="section-no">01 / GENERATE</span><h2>Run the agent</h2></div><p>Runs all ten with the extra answer review enabled. Saves the current answers as <code>previous_dev_answers.json</code>, then writes new answers to <code>dev_answers.json</code>.</p></div>
+      <div class="model-setting"><label for="answer-model">ANSWER MODEL</label><select id="answer-model"></select><button id="answer-model-refresh" type="button">Refresh models</button><span id="answer-model-status" role="status"></span></div>
+      <button class="primary" id="generate-button" type="button">Generate all ten answers →</button>
+      <p class="job-message" id="generate-message" role="status">Checking saved answers…</p>
+      <div class="section-heading"><div><h3>Generated answers</h3></div><p>Inspect each saved answer before grading. Retry regenerates only that answer.</p></div>
+      <div class="case-list" id="answer-cases"></div></section>
+    <section class="section"><div class="section-heading"><div><span class="section-no">02 / GRADE</span><h2>Grade saved answers</h2></div><p>Uses the current saved run; does not regenerate answers.</p></div>
+      <button class="primary" id="run-button" type="button">Run benchmark grading →</button>
+      <p class="job-message" id="job-message" role="status">Checking saved answers…</p></section>
+    <section class="section"><div class="section-heading"><div><span class="section-no">03 / MEASURE</span><h2>Question-file verdicts</h2></div><p>Inspect each method and its evidence.</p></div>
+      <div class="method-scores benchmark-scores" id="scores"></div><div class="case-list" id="cases"></div></section>
+    <footer class="footer"><span>AGENT DEVELOPER WORKSPACE</span><span>LOCAL BENCHMARK REVIEW</span></footer>
+  </main>
+</div></body></html>

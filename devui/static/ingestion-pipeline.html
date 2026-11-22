@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ingestion Workspace · Developer</title>
+  <link rel="stylesheet" href="/dev/chunks.css">
+  <link rel="stylesheet" href="/dev/dev-theme.css">
+  <script src="/dev/chunks.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail" aria-label="Developer workspace">
+      <div class="rail-brand"><span class="brand-mark">◈</span><span>AGENT<br><small>DEVELOPER WORKSPACE</small></span></div>
+      <div class="rail-divider"></div>
+      <p class="rail-label">DEVELOPER WORKSPACE</p>
+      <a class="rail-link current" href="/ingestion-pipeline" aria-current="page"><span>01</span> Ingestion Workspace</a>
+      <a class="rail-link" href="/retrieval-evaluation"><span>02</span> Retrieval Evaluation</a>
+      <a class="rail-link" href="/generation-evaluation"><span>03</span> Generation Evaluation</a>
+      <a class="rail-link" href="/benchmark-evaluation"><span>04</span> Benchmark Evaluation</a>
+      <a class="rail-link" href="/agent-workflow"><span>05</span> Agent Workflow</a>
+      <a class="rail-chat-link" href="/">← Main chat</a>
+      <div class="rail-bottom"><span class="private-dot"></span> LOCAL · DEVELOPER ONLY</div>
+    </aside>
+
+    <main class="main">
+      <header class="masthead">
+        <span class="eyebrow">INGESTION / DEVELOPER</span>
+        <span class="masthead-right">SIX FILINGS · TWO CHUNKING METHODS</span>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="kicker">EVIDENCE SYSTEMS / INGESTION</p>
+          <h1 id="page-title">Ingestion <em>Workspace.</em></h1>
+          <p class="intro-copy">Build chunks, embed their text, and store searchable vectors. Inspect each output alongside its source filing.</p>
+        </div>
+        <div class="intro-stamp" aria-hidden="true"><span>C</span><small>BUILD<br>01</small></div>
+      </section>
+
+      <section class="section" aria-labelledby="index-title">
+        <div class="section-heading"><div><span class="section-no">01 / BUILD</span><h2 id="index-title">Chunk sets</h2></div><p>Both baseline runs use the same size and overlap settings.</p></div>
+        <div class="index-grid">
+          <article class="index-card" id="structure-card">
+            <div class="card-top"><span class="method-tag">01 · DETERMINISTIC</span><span class="status-pill" id="structure-status">Checking</span></div>
+            <h3>Structure aware</h3>
+            <p>Groups nearby text blocks, respects headings, and protects detected tables.</p>
+            <div class="card-foot"><span id="structure-count">— chunks</span><div class="card-actions"><button type="button" class="secondary" data-inspect="structure">View chunks</button><button type="button" class="secondary" data-build="structure">Build chunks <span aria-hidden="true">↗</span></button></div></div>
+          </article>
+          <article class="index-card" id="semantic-card">
+            <div class="card-top"><span class="method-tag">02 · EMBEDDING GUIDED</span><span class="status-pill" id="semantic-status">Checking</span></div>
+            <h3>Semantic</h3>
+            <p>Uses neighboring text embeddings to detect topic changes, while protecting tables.</p>
+            <div class="card-foot"><span id="semantic-count">— chunks</span><div class="card-actions"><button type="button" class="secondary" data-inspect="semantic">View chunks</button><button type="button" class="secondary" data-build="semantic">Build chunks <span aria-hidden="true">↗</span></button></div></div>
+          </article>
+        </div>
+        <p class="job-message" id="job-message" role="status" aria-live="polite"></p>
+        <details class="build-log" id="build-log" hidden><summary>Build details</summary><pre id="build-log-text"></pre></details>
+        <div class="pipeline-note">
+          <div class="pipeline-step"><span>01</span><strong>Extract</strong><p>Read six PDFs as positioned text blocks and detected tables.</p></div>
+          <div class="pipeline-step"><span>02</span><strong>Chunk</strong><p>Place boundaries by document structure or neighboring block similarity.</p></div>
+          <div class="pipeline-step"><span>03</span><strong>Embed</strong><p>Turn each finished chunk into a searchable vector.</p></div>
+          <div class="pipeline-step"><span>04</span><strong>Index</strong><p>Save vectors and source details in local Qdrant.</p></div>
+        </div>
+        <p class="artifact-note"><strong>What is stored?</strong> The chunk set lives in <code>data/index/&lt;strategy&gt;_chunks.jsonl</code>. Semantic boundary embeddings are cached separately. Finished chunk embeddings and the Qdrant index are built below.</p>
+        <details class="build-log"><summary>Show the ingestion call and code path</summary><pre>UI Build chunks → POST /api/dev/build → devui/server.py build_chunk_set()
+→ python -m src.ingestion_pipeline.chunking.main --strategy structure (or semantic)
+→ src/ingestion_pipeline/chunking/main.py reads data/manifest.json
+→ src/ingestion_pipeline/chunking/extract.py extracts PDF blocks and tables
+→ src/ingestion_pipeline/chunking/build.py groups blocks into chunks
+→ src/ingestion_pipeline/chunking/semantic.py adds topic boundaries for semantic runs
+→ data/index/&lt;strategy&gt;_chunks.jsonl</pre><p>The developer server starts this command in the background. A saved trial also passes target, maximum, overlap, and output path.</p></details>
+      </section>
+
+      <section class="section" id="vector-section" aria-labelledby="vector-title">
+        <div class="section-heading"><div><span class="section-no">02 / EMBED & INDEX</span><h2 id="vector-title">Search preparation</h2></div><p>Each method has its own vectors and Qdrant collection.</p></div>
+        <div class="vector-grid">
+          <article class="vector-card" data-vector-card="structure">
+            <div class="vector-card-heading"><span class="method-tag">STRUCTURE AWARE</span><span class="status-pill" id="structure-vector-status">Checking</span></div>
+            <h3>From chunks to search</h3>
+            <ol class="vector-steps"><li><strong>Chunks</strong><span id="structure-vector-chunks">Checking</span></li><li><strong>Embeddings</strong><span id="structure-vector-embedding">Not generated</span></li><li><strong>Qdrant index</strong><span id="structure-vector-index">Not built</span></li></ol>
+            <div class="vector-actions"><button type="button" class="primary" data-generate-embedding="structure">Generate Embeddings <span aria-hidden="true">→</span></button><button type="button" class="secondary" data-build-index="structure">Build Qdrant index →</button></div>
+            <div class="vector-links"><a href="#embedding-explorer" data-open-embeddings="structure">View embeddings ↓</a><a href="#qdrant-explorer" data-open-qdrant="structure">View in Qdrant explorer ↓</a></div>
+          </article>
+          <article class="vector-card" data-vector-card="semantic">
+            <div class="vector-card-heading"><span class="method-tag">SEMANTIC</span><span class="status-pill" id="semantic-vector-status">Checking</span></div>
+            <h3>From chunks to search</h3>
+            <ol class="vector-steps"><li><strong>Chunks</strong><span id="semantic-vector-chunks">Checking</span></li><li><strong>Embeddings</strong><span id="semantic-vector-embedding">Not generated</span></li><li><strong>Qdrant index</strong><span id="semantic-vector-index">Not built</span></li></ol>
+            <div class="vector-actions"><button type="button" class="primary" data-generate-embedding="semantic">Generate Embeddings <span aria-hidden="true">→</span></button><button type="button" class="secondary" data-build-index="semantic">Build Qdrant index →</button></div>
+            <div class="vector-links"><a href="#embedding-explorer" data-open-embeddings="semantic">View embeddings ↓</a><a href="#qdrant-explorer" data-open-qdrant="semantic">View in Qdrant explorer ↓</a></div>
+          </article>
+        </div>
+        <p class="job-message" id="vector-message" role="status" aria-live="polite"></p>
+        <p class="artifact-note">The vector displayed below is the numeric output for a finished chunk. Qdrant local mode has no separate web dashboard, so this explorer reads the points directly from the local Qdrant collection.</p>
+        <div class="explorer-grid">
+          <section class="explorer-panel" id="embedding-explorer" aria-labelledby="embedding-explorer-title">
+            <div class="explorer-head"><div><span class="method-tag">STAGING FILE</span><h3 id="embedding-explorer-title">Embedding viewer</h3></div><select id="embedding-strategy" aria-label="Embedding method"><option value="structure">Structure aware</option><option value="semantic">Semantic</option></select></div>
+            <p class="explorer-caption" id="embedding-caption">Generate embeddings to inspect their values.</p>
+            <div id="embedding-list" class="vector-list"></div>
+            <button type="button" class="secondary" id="more-embeddings" hidden>Next embeddings →</button>
+          </section>
+          <section class="explorer-panel qdrant-panel" id="qdrant-explorer" aria-labelledby="qdrant-explorer-title">
+            <div class="explorer-head"><div><span class="method-tag">LOCAL QDRANT</span><h3 id="qdrant-explorer-title">Qdrant explorer</h3></div><select id="qdrant-strategy" aria-label="Qdrant method"><option value="structure">Structure aware</option><option value="semantic">Semantic</option></select></div>
+            <p class="explorer-caption" id="qdrant-caption">Build an index to inspect stored points.</p>
+            <div id="qdrant-list" class="vector-list"></div>
+            <button type="button" class="secondary" id="more-qdrant" hidden>Next Qdrant points →</button>
+          </section>
+        </div>
+      </section>
+
+      <section class="section" id="inspect-section" aria-labelledby="inspect-title">
+        <div class="section-heading"><div><span class="section-no">03 / EXPLORE</span><h2 id="inspect-title">Inside the chunks</h2></div><p>Trace each passage back to its filing and physical PDF page.</p></div>
+        <div class="inspect-controls">
+          <label>CHUNK SET<select id="chunk-strategy"><option value="structure">Structure aware</option><option value="semantic">Semantic</option></select></label>
+          <label>FILING<select id="chunk-document"><option value="">All filings</option></select></label>
+          <label>PDF PAGE<input id="chunk-page" type="number" min="1" placeholder="Any"></label>
+          <label class="chunk-search">TEXT CONTAINS<input id="chunk-query" type="search" placeholder="e.g. Greater China"></label>
+          <button type="button" class="primary" id="inspect-chunks">Inspect chunks <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="chunk-overview" id="chunk-overview"></div>
+        <div class="document-breakdown" id="document-breakdown"></div>
+        <p class="artifact-note">Select <strong>Show on PDF</strong> on a chunk. Yellow marks only the text extracted into that selected chunk on the current PDF page. A long block split by character limit can share one approximate source box across pieces.</p>
+        <div class="inspect-layout">
+          <div class="chunk-list" id="chunk-list"></div>
+          <aside class="pdf-panel" id="pdf-panel" aria-label="Annotated PDF page">
+            <div class="pdf-toolbar"><div><span class="method-tag">SOURCE DOCUMENT</span><strong id="pdf-title">Select a chunk</strong></div><div class="pdf-navigation"><button type="button" class="secondary" id="pdf-prev" disabled aria-label="Previous PDF page">←</button><span id="pdf-page-label">—</span><button type="button" class="secondary" id="pdf-next" disabled aria-label="Next PDF page">→</button></div></div>
+            <p class="pdf-help" id="pdf-help">Choose “Show on PDF” to mark a chunk in its source filing.</p>
+            <div class="pdf-canvas" id="pdf-canvas"></div>
+            <a id="pdf-original" target="_blank" rel="noopener noreferrer" hidden>Open original PDF ↗</a>
+          </aside>
+        </div>
+        <div class="pagination" id="chunk-pagination" hidden><button type="button" class="secondary" id="previous-chunks">← Previous</button><span id="chunk-page-label"></span><button type="button" class="secondary" id="next-chunks">Next →</button></div>
+      </section>
+
+      <section class="section" id="tune-section" aria-labelledby="tune-title">
+        <div class="section-heading"><div><span class="section-no">04 / ADJUST</span><h2 id="tune-title">Chunking settings</h2></div><p>Move a slider, build a new chunk set, then inspect its chunks.</p></div>
+        <div class="tuning-panel">
+          <div class="tuning-fields">
+            <div class="tune-heading"><span class="method-tag">NEW TRIAL</span><strong>Boundary settings</strong></div>
+            <div class="method-switch" role="group" aria-label="Chunking method"><button type="button" class="method-choice selected" data-method="structure" aria-pressed="true">Structure aware</button><button type="button" class="method-choice" data-method="semantic" aria-pressed="false">Semantic</button></div>
+            <label class="range-row"><span>Target length <small>characters</small></span><output id="target-value" for="target-range">3,600</output><input id="target-range" type="range" min="1200" max="4800" step="200" value="3600"></label>
+            <label class="range-row"><span>Maximum length <small>characters</small></span><output id="maximum-value" for="maximum-range">4,800</output><input id="maximum-range" type="range" min="1600" max="8000" step="200" value="4800"></label>
+            <label class="range-row"><span>Overlap <small>up to this many characters</small></span><output id="overlap-value" for="overlap-range">400</output><input id="overlap-range" type="range" min="0" max="1000" step="100" value="400"></label>
+            <button type="button" class="primary build-trial" id="build-trial">Build saved trial <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="tuning-guide"><span class="section-no">HOW TO USE THIS</span><h3>Change one setting at a time.</h3><p>Start with the structure-aware baseline. Change overlap, build a saved trial, and inspect its text and PDF highlights. You can also change target length or maximum length.</p><p>Target is a grouping goal; headings and tables may produce shorter chunks. Overlap applies only at size boundaries. Moving a slider does not call Fireworks. Building a semantic trial can use embedding credits.</p><p class="guide-precision">Saved trials are separate chunk files. Their settings remain visible here so you can evaluate them after retrieval is built.</p></div>
+        </div>
+        <p class="job-message" id="tune-message" role="status" aria-live="polite"></p>
+        <div class="trial-heading"><h3>Chunk sets</h3><span id="trial-count">—</span></div>
+        <div class="table-wrap"><table class="trial-table"><thead><tr><th>Method / set</th><th>Target</th><th>Max</th><th>Overlap</th><th>Chunks</th><th>Status</th><th>Inspect</th></tr></thead><tbody id="trial-rows"></tbody></table></div>
+        <p class="trial-note">This table includes the two default sets and any slider trials saved on this computer.</p>
+        <p class="trial-note">A chunk count tells you how many pieces were made. It does not measure retrieval or answer quality.</p>
+      </section>
+      <footer class="footer"><span>AGENT DEVELOPER WORKSPACE / INGESTION</span><span>LOCAL INSPECTION · NO ANSWER MODEL CALLED</span></footer>
+    </main>
+  </div>
+</body>
+</html>

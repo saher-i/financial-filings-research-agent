@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141414">
+  <title>10K research agent</title>
+  <link rel="stylesheet" href="/chat.css">
+  <script src="/chat.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="Research workspace">
+      <a class="brand" href="/" aria-label="10K research agent home"><span class="brand-mark" aria-hidden="true">10K</span><span>10K research agent</span></a>
+      <button class="new-chat" id="new-chat" type="button"><span aria-hidden="true">＋</span> New chat</button>
+      <div class="sidebar-section">
+        <p class="sidebar-heading">Recent chats</p>
+        <div id="recent-chats" class="recent-chats"><p class="recent-empty">Loading…</p></div>
+      </div>
+      <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span> Local research workspace</div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar"><span>10K research agent</span><a id="dev-console-link" class="dev-console-link" href="/retrieval-evaluation" hidden>Developer console ↗</a></header>
+      <div class="workspace-inner">
+        <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+          <div class="welcome-mark" aria-hidden="true">10K</div>
+          <h1 id="welcome-title">What would you like to know?</h1>
+          <p>Ask about the financial tables, annual filings, or both. Every answer includes its sources.</p>
+        </section>
+        <section class="conversation" id="conversation" role="log" aria-live="polite" aria-label="Research conversation"></section>
+        <section class="composer-wrap" aria-label="Ask a question">
+          <div class="composer-options">
+            <fieldset class="answer-style" aria-label="Answer length">
+              <legend>Answer length</legend>
+              <label><input type="radio" name="answer-style" value="concise" checked><span>Concise</span></label>
+              <label><input type="radio" name="answer-style" value="detailed"><span>Elaborate</span></label>
+            </fieldset>
+            <label class="model-choice" for="chat-model"><span>Agent model</span><select id="chat-model" aria-describedby="model-status"><option value="">Loading models…</option></select></label>
+          </div>
+          <p id="model-status" class="model-status" role="status"></p>
+          <form id="chat-form" class="composer">
+            <label for="question" class="sr-only">Question about the financials or filings</label>
+            <textarea id="question" name="question" rows="2" maxlength="2000" placeholder="Ask anything about the filings…" required></textarea>
+            <button id="send" type="submit" aria-label="Send question"><span aria-hidden="true">↑</span></button>
+          </form>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+          <p class="composer-caption">Answers use the supplied filings and database. Check the cited evidence before relying on a result.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

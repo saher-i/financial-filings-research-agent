@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retrieval Evaluation · Developer</title>
+  <link rel="stylesheet" href="/dev/chunks.css">
+  <link rel="stylesheet" href="/dev/retrieval-evaluation.css">
+  <link rel="stylesheet" href="/dev/dev-theme.css">
+  <script src="/dev/eval-progress.js" defer></script>
+  <script src="/dev/retrieval-evaluation.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail" aria-label="Developer workspace">
+      <div class="rail-brand"><span class="brand-mark">◈</span><span>AGENT<br><small>DEVELOPER WORKSPACE</small></span></div>
+      <div class="rail-divider"></div>
+      <p class="rail-label">DEVELOPER WORKSPACE</p>
+      <a class="rail-link" href="/ingestion-pipeline"><span>01</span> Ingestion Workspace</a>
+      <a class="rail-link current" href="/retrieval-evaluation" aria-current="page"><span>02</span> Retrieval Evaluation</a>
+      <a class="rail-link" href="/generation-evaluation"><span>03</span> Generation Evaluation</a>
+      <a class="rail-link" href="/benchmark-evaluation"><span>04</span> Benchmark Evaluation</a>
+      <a class="rail-link" href="/agent-workflow"><span>05</span> Agent Workflow</a>
+      <a class="rail-chat-link" href="/">← Main chat</a>
+      <div class="rail-bottom"><span class="private-dot"></span> LOCAL · DEVELOPER ONLY</div>
+    </aside>
+    <main class="main">
+      <header class="masthead"><span class="eyebrow">RETRIEVAL / DEVELOPER</span><span class="masthead-right">CITED EVIDENCE DIAGNOSTIC</span></header>
+      <section class="intro">
+        <div><p class="kicker">EVIDENCE SYSTEMS / RETRIEVAL</p><h1>Retrieval <em>Evaluation.</em></h1>
+          <p class="intro-copy">Compare cited evidence with every SQL and PDF source the agent retrieved for its saved benchmark answers. Both use official RAGAS Context Precision and Context Recall.</p></div>
+        <div class="intro-stamp" aria-hidden="true"><span>R</span><small>CHECK<br>02</small></div>
+      </section>
+      <section class="section">
+        <div class="section-heading"><div><span class="section-no">01 / RUN</span><h2>Score saved evidence</h2></div><p>Test two questions, then score all ten saved answers.</p></div>
+        <form id="eval-form" class="eval-controls">
+          <label>QUESTIONS<select id="question-count"><option value="2">Pilot · 2 (PDF + mixed)</option><option value="10">Full · all 10</option></select></label>
+          <button class="primary" type="submit" id="run-button">Run retrieval evaluation <span>→</span></button>
+        </form>
+        <p class="job-message" id="readiness" role="status">Checking saved answers…</p>
+        <p class="job-message" id="job-message" role="status"></p>
+      </section>
+      <section class="section">
+        <div class="section-heading"><div><span class="section-no">02 / MEASURE</span><h2>Evidence precision and recall</h2></div><p>LLM-labeled estimates, not human passage labels.</p></div>
+        <div class="method-scores" id="scores"><p class="empty-note">Run the evaluation to see results.</p></div>
+        <details class="metric-notes"><summary>How these scores work</summary><p>Official RAGAS Context Precision judges whether each source is useful for the question and supplied expected answer. Context Recall checks which expected claims the sources support. Fireworks supplies the judge. Cited evidence follows citation order. All retrieved evidence includes uncited sources in the order the agent saw them. Because the agent can make several searches, that order is not one global search ranking.</p></details>
+      </section>
+      <section class="section">
+        <div class="section-heading"><div><span class="section-no">03 / INSPECT</span><h2>Question by question</h2></div><p>Open a question to compare cited and retrieved sources.</p></div>
+        <div id="cases" class="case-list"><p class="empty-note">Saved benchmark questions will appear here.</p></div>
+      </section>
+      <footer class="footer"><span>AGENT DEVELOPER WORKSPACE</span><span>LOCAL EVIDENCE INSPECTION</span></footer>
+    </main>
+  </div>
+</body>
+</html>

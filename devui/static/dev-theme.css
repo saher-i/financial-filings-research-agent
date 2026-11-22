@@ -1,0 +1,122 @@
+:root{color-scheme:dark;--ink:#ececec;--muted:#a3a3a3;--paper:#151515;--card:#202020;--line:#383838;--accent:#b6c9ba;--deep:#101010;--green:#a7c6ab;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+body{background:var(--paper);color:var(--ink);font-family:"Avenir Next",Avenir,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px}
+button,select,input,textarea{color:var(--ink)}
+.app-shell{grid-template-columns:clamp(230px,11.4vw,288px) minmax(0,1fr)}
+.rail{background:#101010;border-right:1px solid #2c2c2c;padding:24px 13px}
+.rail-brand{font:650 14px/1.2 "Avenir Next",Avenir,sans-serif;letter-spacing:0;padding:0 11px}
+.rail-brand small{font:10px/1.6 var(--mono);letter-spacing:.07em;color:#858585}
+.brand-mark{font:700 25px/1 Georgia,serif;color:#c7d6c9}
+.rail-divider{background:#303030;margin:26px 11px 22px}
+.rail-label{color:#858585;margin:0 11px 11px;letter-spacing:.06em}
+.rail-link,.rail-link.current{border:0;border-radius:9px;background:transparent;color:#bcbcbc;padding:12px 11px;font-size:12px}
+.rail-link+.rail-link{margin-top:2px}
+.rail-link:hover{background:#222;color:#f1f1f1}
+.rail-link.current{background:#292929;color:#f1f1f1}
+.rail-link span,.rail-link.current span{color:#9caf9e}
+.rail-bottom{color:#777;padding:0 11px;font-size:10px}
+.private-dot{background:#94b29a}
+.main{max-width:1900px;padding:0 clamp(22px,4vw,65px)}
+.masthead{padding:22px 0 17px}
+.eyebrow,.masthead-right,.kicker,.section-no{letter-spacing:.07em;color:#9eb8a4}
+.intro{min-height:0;padding:45px 0 42px}
+.intro h1{font-size:clamp(38px,4.4vw,64px);line-height:1.05;font-weight:550;letter-spacing:-.045em}
+.intro h1 em{color:#c3d4c7;font-style:normal}
+.intro-copy{font-size:15px;line-height:1.6;color:#aaa;max-width:640px;margin-top:17px}
+.intro-stamp{display:none}
+.section{padding:32px 0 38px}
+.section-heading h2{font-size:28px;font-weight:550;letter-spacing:-.025em}
+.section-heading p{color:#929292;font-size:12px}
+.index-card,.vector-card,.overview-stat,.chunk-card,.vector-item,.document-row,.score-card,.case-card,.answer-stat,.answer-case{background:#202020;border-color:var(--line);border-radius:10px}
+.index-card,.vector-card{padding:21px;min-height:0}
+.index-card h3,.vector-card h3,.explorer-head h3,.trial-heading h3{font-size:20px;font-weight:550}
+.index-card p,.tuning-guide p{color:#aaa}
+.index-card:hover{border-color:#647766;transform:none}
+.status-pill{color:#aaa}
+.status-pill.ready{color:#badac0;background:#253028;border-color:#526a56}
+.method-tag{color:#b7caba}
+.card-foot,.vector-steps li{border-color:var(--line)}
+.secondary{color:#d0e1d2;border-color:#859e88}
+.secondary span{color:#a9c5ad}
+.primary{background:#dae7dc;color:#172119;border-color:#dae7dc;border-radius:8px;font:600 12px "Avenir Next",Avenir,sans-serif}
+.primary:hover{background:#fff}
+.primary span{color:#45614b}
+.job-message,.build-log,.artifact-note,.trial-note,.explorer-caption{color:#9a9a9a}
+.build-log pre,.vector-item pre,.source-content pre{background:#171717;border-color:var(--line);color:#d4d4d4}
+.pipeline-note,.explorer-panel,.qdrant-panel,.inspect-controls,.tuning-guide,.eval-controls,.answer-run{background:#1c1c1c;border-color:var(--line);color:var(--ink);border-radius:10px}
+.pipeline-step{border-color:var(--line)}
+.pipeline-step p,.tuning-guide .guide-precision{color:#a7a7a7}
+.explorer-head select,.inspect-controls input,.inspect-controls select,.eval-controls select,.answer-review select,.answer-review textarea{background:#262626;color:#ececec;border-color:#505050;border-radius:7px}
+.vector-item p,.vector-item code,.chunk-card p,.result-hit p,.source-content p{color:#c9c9c9}
+.vector-item strong,.chunk-id{color:#bcd1bf}
+.vector-item summary,.chunk-card a,.pdf-panel>a,.vector-links a,.source-link{color:#b2d2b8}
+.chunk-card.selected{border-color:#d4b96f;box-shadow:inset 3px 0 #d4b96f}
+.document-row:hover{border-color:#778b79}
+.pdf-panel{background:#1e1e1e;border-color:var(--line);border-radius:10px}
+.pdf-help{color:#a3b6a5}
+.pdf-canvas{background:#303030}
+.pdf-sheet{box-shadow:0 6px 24px #0008}
+.tuning-panel{border-color:var(--line);border-radius:10px}
+.tuning-fields{background:#242424}
+.tuning-guide .guide-precision{border-color:var(--line)}
+.tuning-guide h3{font-size:23px}
+.method-switch{background:#333}
+.method-choice.selected{background:#e3eae3;color:#172219}
+.build-trial{background:#dce9de;color:#1b2a1e;border-color:#dce9de}
+.range-row input[type=range]{background:#3b3b3b}
+.table-wrap{background:#202020;border-radius:10px}
+th{background:#292929;color:#aaa}
+td,.trial-table th{border-color:var(--line)}
+tbody tr:hover{background:#292929}
+.score-card.hybrid{background:#27342a;border-color:#4b634f;color:#f0f4f0}
+.score-card.hybrid p{color:#c0cec3}
+.case-card summary,.answer-case>summary{color:#eee}
+.case-body,.answer-case-body,.answer-source-list,.answer-review{border-color:var(--line)}
+.evidence-label,.hit-source,.answer-review-status{color:#a9bba9}
+.method-column,.answer-panel,.answer-panel.reference{background:#272727;border-color:var(--line);color:#e8e8e8;border-radius:8px}
+.result-hit{border-color:var(--line)}
+.result-hit.is-match{border-color:#8fb698}
+.result-hit details{color:#b2d2b8}
+.answer-run strong{font-size:20px;font-weight:550}
+.answer-run p{color:#a7a7a7}
+.answer-stat strong{font-family:"Avenir Next",Avenir,sans-serif;font-size:28px}
+.answer-panel h3,.answer-source-list h3,.answer-review h3{color:#bed3c1}
+.answer-panel p{color:#e0e0e0}
+.answer-review button{background:#dce9de;color:#1a2a1e;border-radius:7px}
+.answer-source-list details{border-color:var(--line)}
+.answer-source-list summary{color:#b4d2b9}
+.answer-empty,.footer{color:#8f8f8f}
+.answer-judge{background:#242a25;border-left-color:var(--accent);color:var(--ink)}
+.answer-judge h3{color:#bed3c1}
+.answer-judge p,.answer-judge li{color:#c9d2ca}
+.artifact-note code{background:#2d2d2d;color:#d1d1d1}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid #b6c9ba;outline-offset:2px}
+.model-setting{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:0 0 17px;padding:16px 18px;border:1px solid var(--line);border-radius:9px;background:#202020}
+.model-setting label{font:11px var(--mono);letter-spacing:.08em;color:#bed3c1}
+.model-setting select{min-width:min(100%,310px);max-width:100%;padding:10px 12px;border:1px solid #505050;border-radius:7px;background:#292929;color:var(--ink)}
+.model-setting button{padding:10px 13px;border:1px solid #626f64;border-radius:7px;background:transparent;color:#dce9de;cursor:pointer}
+.model-setting button:disabled{opacity:.5;cursor:wait}
+.model-setting span{color:#aaa;font-size:12px}
+#scores.benchmark-scores{grid-template-columns:repeat(4,minmax(0,1fr));max-width:900px}
+#scores.benchmark-scores .score-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px}
+#scores.benchmark-scores .score-card strong{font-size:32px;margin:0}
+@media(max-width:720px){#scores.benchmark-scores{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1000px){.app-shell{grid-template-columns:1fr}.rail{height:auto;padding:12px 18px;gap:5px;flex-wrap:wrap}.rail-link{margin-left:0}.rail-link+.rail-link{margin-top:0}.main{padding:0 22px}}
+@media(max-width:720px){.intro{padding:35px 0}.intro h1{font-size:40px}.section-heading h2{font-size:25px}}
+.eval-progress { margin: 12px 0 20px; max-width: 560px; color: var(--muted); font: 11px/1.5 var(--mono); }
+.eval-progress[hidden] { display: none; }
+.eval-progress-track { position: relative; height: 8px; border-radius: 99px; overflow: hidden; background: #333c36; border: 1px solid #526258; }
+.eval-progress-track span { display: block; height: 100%; background: #b9d0bd; transition: width .3s ease; }
+.eval-progress-track::after { content: ''; position: absolute; top: 0; bottom: 0; width: 12%; background: rgba(255,255,255,.2); animation: eval-progress-activity 2s linear infinite; }
+.eval-progress small { display: block; margin-top: 6px; }
+.eval-progress.indeterminate .eval-progress-track span { width: 35%; animation: eval-progress-slide 1.5s ease-in-out infinite alternate; }
+@keyframes eval-progress-slide { from { transform: translateX(0); } to { transform: translateX(190%); } }
+@keyframes eval-progress-activity { from { left: -12%; } to { left: 100%; } }
+/* Shared charcoal and sage navigation across the five developer views. */
+.rail{background:#101010;border-right-color:#303030}
+.rail .rail-link,.rail .rail-link:visited{color:#bcbcbc;background:transparent;border:0}
+.rail .rail-link span{color:#9caf9e}
+.rail .rail-link:hover{color:#f1f1f1;background:#222}
+.rail .rail-link.current,.rail .rail-link.current:visited{color:#f1f1f1;background:#292929}
+.rail-chat-link{display:block;margin:auto 11px 12px;padding:10px 11px;border:1px solid #46574a;border-radius:8px;color:#c6d8c9;text-decoration:none;font:11px/1.4 var(--mono)}
+.rail-chat-link:hover{background:#252f27;color:#fff}
+.rail-bottom{margin-top:0}
